@@ -31,6 +31,24 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .medium))
                         .foregroundColor(.white)
                 }
+                .padding(.bottom)
+               
+                
+                HStack(spacing: 18){
+                    WeatherDayView(dayOfWeek: "TUE", imageName: "cloud.sun.fill", temperature: 77)
+                    WeatherDayView(dayOfWeek: "WED", imageName: "cloud.sun.fill", temperature: 77)
+                    WeatherDayView(dayOfWeek: "THU", imageName: "cloud.sun.fill", temperature: 77)
+                    WeatherDayView(dayOfWeek: "FRI", imageName: "cloud.sun.fill", temperature: 77)
+                    WeatherDayView(dayOfWeek: "SAT", imageName: "cloud.sun.fill", temperature: 77)
+                }
+                Spacer()
+                
+                Button{
+                    print("Button tapped")
+                }label: {
+                    Text("Change day time")
+                }
+                
                 Spacer()
             }
         }
@@ -41,5 +59,29 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct WeatherDayView: View {
+    var dayOfWeek: String
+    var imageName: String
+    var temperature: Int
+    
+    var body: some View {
+        VStack{
+            Text(dayOfWeek)
+                .font(.system(size: 16, weight: .medium, design: .default))
+                .foregroundColor(.white)
+            
+            Image(systemName: imageName)
+                .renderingMode(.original)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+            
+            Text("\(temperature)")
+                .font(.system(size: 28, weight: .medium))
+                .foregroundColor(.white)
+        }
     }
 }
