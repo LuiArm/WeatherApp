@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView(isNight: $isNight)
+            BackgroundView(isNight: isNight)
             VStack{
                 CityTextView(cityName: "Cupertino, CA")
                 MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temperature: 76)
@@ -32,7 +32,7 @@ struct ContentView: View {
                 Button{
                     isNight.toggle()
                 }label: {
-                    WeatherButton(title: "Change day time", backgroundColor: .white, textColor: .black)
+                    WeatherButton(title: "Change day time", backgroundColor: .cyan, textColor: .white)
                 }
                 
                 Spacer()
@@ -60,7 +60,7 @@ struct WeatherDayView: View {
                 .foregroundColor(.white)
             
             Image(systemName: imageName)
-                .renderingMode(.original)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
@@ -74,13 +74,13 @@ struct WeatherDayView: View {
 
 struct BackgroundView: View {
     
-    @Binding var isNight: Bool
+    var isNight: Bool
 
     var body: some View {
         LinearGradient(colors: [isNight ? .black : .blue, isNight ? .gray : .white],
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(.all)
+        .ignoresSafeArea()
     }
 }
 
